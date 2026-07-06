@@ -44,6 +44,11 @@ LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
+CORS_ALLOWED_ORIGINS = [
+    "https://student_management_system.vercel.app",
+    "https://www.student_management_system.vercel.app",
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
