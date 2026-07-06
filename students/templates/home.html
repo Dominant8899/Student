@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - Student Management System{% endblock %}
+{% block content %}
+
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm border">
+  <div class="container-fluid py-3">
+    <h1 class="display-5 fw-bold text-dark">Student Management Dashboard</h1>
+    <p class="col-md-8 fs-4 text-muted">
+      Efficiently organize, validate, track, and update academic database
+      items inside a unified responsive interface application framework.
+    </p>
+  </div>
+</div>
+
+<div class="row g-4 mb-4">
+  <div class="col-md-4">
+    <div class="card border-0 shadow-sm bg-primary text-white h-100">
+      <div class="card-body d-flex align-items-center justify-content-between p-4">
+        <div>
+          <h6 class="text-uppercase mb-2 opacity-75">Registered Database Profiles</h6>
+          <h2 class="display-6 fw-bold mb-0">{{ total_students }}</h2>
+        </div>
+        <i class="bi bi-people-fill display-4 opacity-50"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card border-0 shadow-sm bg-success text-white h-100">
+      <div class="card-body d-flex align-items-center justify-content-between p-4">
+        <div>
+          <h6 class="text-uppercase mb-2 opacity-75">Database System Status</h6>
+          <h2 class="fs-3 fw-bold mb-0">Active / Online</h2>
+        </div>
+        <i class="bi bi-database-check display-4 opacity-50"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card border-0 shadow-sm bg-dark text-white h-100">
+      <div class="card-body d-flex align-items-center justify-content-between p-4">
+        <div>
+          <h6 class="text-uppercase mb-2 opacity-75">Engine Mode</h6>
+          <h2 class="fs-4 fw-bold mb-0">SQLite Engine</h2>
+        </div>
+        <i class="bi bi-cpu display-4 opacity-50"></i>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

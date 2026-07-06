@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block title %}Update Student Record{% endblock %}
+{% block content %} {% if student %}
+<div class="card shadow-sm border-0 p-4">
+  <h4 class="mb-3 text-secondary fw-bold">
+    <i class="bi bi-pencil-square me-2"></i>Editing: {{ student.name }}
+  </h4>
+  <form method="post" novalidate>
+    {% csrf_token %} {% for field in form %}
+    <div class="mb-3">
+      <label class="form-label fw-semibold text-muted small"
+        >{{ field.label }}</label
+      >
+      {{ field }} {% if field.errors %}
+      <div class="text-danger small mt-1">{{ field.errors.0 }}</div>
+      {% endif %}
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-success w-100 py-2 mt-2 fw-bold">
+      <i class="bi bi-check-circle me-1"></i>Save Changes
+    </button>
+  </form>
+  <a
+    href="{% url 'delete_student' student.id %}"
+    class="btn btn-danger w-100 py-2 mt-2 fw-bold"
+    onclick="return confirm('Permanently remove this student record?');"
+  >
+    <i class="bi bi-trash3-fill me-1"></i>Delete Student
+  </a>
+</div>
+
+{% else %}
+<div class="card shadow-sm border-0 p-4">
+  <h4 class="mb-3 text-secondary fw-bold">Select a student to update</h4>
+  <div class="list-group">
+    {% for s in students %}
+    <a
+      href="{% url 'edit_student' s.id %}"
+      class="list-group-item list-group-item-action"
+    >
+      {{ s.name }} — {{ s.email }} — {{s.age}} years old — {{s.course}}
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %} {% endblock %}

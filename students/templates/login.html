@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="row g-4 justify-content-center">
+  <div class="col-lg-4">
+    <div class="card shadow-sm border-0 p-4">
+      <h4 class="mb-3 text-secondary fw-bold">
+        <i class="bi bi-box-arrow-in-right me-2"></i>Welcome Back
+      </h4>
+
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-danger p-2 small">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+
+      <form method="POST" novalidate>
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label fw-semibold text-muted small">Username</label>
+          <input type="text" name="username" class="form-control" placeholder="Enter your username" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-semibold text-muted small">Password</label>
+          <input type="password" name="password" class="form-control" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="btn btn-success w-100 py-2 mt-2 fw-bold">
+          <i class="bi bi-check-circle me-1"></i>Login
+        </button>
+      </form>
+
+      <p class="text-center text-muted small mt-3 mb-0">
+        Don't have an account? <a href="{% url 'register' %}">Register here</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

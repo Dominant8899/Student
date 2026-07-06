@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {% block title %}Manage Database Records{% endblock %}
+{% block content %}
+{% if user.is_staff %}
+<div class="row g-4 justify-content-center">
+  <div class="col-lg-4">
+    <div class="card shadow-sm border-0 p-4">
+      <h4 class="mb-3 text-secondary fw-bold">
+        <i class="bi bi-person-plus-fill me-2"></i>Add New Record
+      </h4>
+      <form method="post" novalidate>
+        {% csrf_token %} {% if form.errors %}
+        <div class="alert alert-danger p-2 small">
+          Please correct the validation problems highlighted below.
+        </div>
+        {% endif %} {% for field in form %}
+        <div class="mb-3">
+          <label class="form-label fw-semibold text-muted small"
+            >{{ field.label }}</label
+          >
+          {{ field }} {% if field.errors %}
+          <div class="text-danger small mt-1">{{ field.errors.0 }}</div>
+          {% endif %}
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-success w-100 py-2 mt-2 fw-bold">
+          <i class="bi bi-check-circle me-1"></i>Save Entry Record
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

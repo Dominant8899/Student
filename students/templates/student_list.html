@@ -1,0 +1,78 @@
+{% extends 'base.html' %} {% block title %}Manage Database Records{% endblock %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-lg-8">
+    <div class="card shadow-sm border-0 p-4">
+      <div
+        class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center border-bottom pb-3 mb-3 gap-2"
+      >
+        <h4 class="text-secondary fw-bold mb-0">
+          <i class="bi bi-journal-text me-2"></i>Active Records Registry
+        </h4>
+
+        <form
+          method="get"
+          action="{% url 'student_list' %}"
+          class="d-flex gap-2 align-items-center"
+        >
+          <input
+            type="text"
+            name="q"
+            class="form-control form-control-sm"
+            placeholder="Searching..."
+            value="{{ query|default:'' }}"
+          />
+          <button type="submit" class="btn btn-primary btn-sm">
+            <i class="bi bi-search"></i>
+          </button>
+          {% if query %}
+          <a
+            href="{% url 'student_list' %}"
+            class="btn btn-sm btn-outline-secondary"
+          >
+            <i class="bi bi-arrow-clockwise"></i>
+          </a>
+          {% endif %}
+        </form>
+      </div>
+      {% if students %}
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light text-muted small text-uppercase">
+            <tr>
+              <th>Student Identity Name</th>
+              <th>Email Target Address</th>
+              <th class="text-center">Age</th>
+              <th>Enrolled Course Module</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in students %}
+            <tr>
+              <td class="fw-bold text-dark">{{ item.name }}</td>
+              <td>{{ item.email }}</td>
+              <td class="text-center">
+                <span class="badge bg-secondary rounded-pill"
+                  >{{ item.age }}</span
+                >
+              </td>
+              <td>
+                <span class="badge bg-light text-dark border"
+                  >{{ item.course }}</span
+                >
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div class="alert alert-warning text-center py-4 my-3">
+        <i class="bi bi-exclamation-triangle-fill display-6 mb-2 d-block"></i>
+        No match entries currently match database selection parameters.
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
